@@ -23,7 +23,7 @@
 			return a - b;
 		};
 		
-		$this.on('click', 'th', function(e)
+		$this.on('click', 'thead th', function(e)
 		{
 			var $self = $(this);
 			var idx = $(this).index();
