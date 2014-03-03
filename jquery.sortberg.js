@@ -3,6 +3,7 @@
 	$.fn.sortberg = function(params)
 	{
 		var $this = $(this);
+		var options = params || {};
 		
 		var comparators = {};
 		comparators.text = function($a, $b)
@@ -14,7 +15,12 @@
 		
 		comparators.number = function($a, $b)
 		{
-			return parseFloat($a.text())-parseFloat($b.text());
+			var a = parseFloat($a.text());
+			var b = parseFloat($b.text());
+			if (isNaN(a)) { a = 0 }
+			if (isNaN(b)) { b = 0 }
+			
+			return a - b;
 		};
 		
 		$this.on('click', 'th', function(e)
@@ -23,11 +29,21 @@
 			var idx = $(this).index();
 			var rows = $this.find('tbody tr').get();
 			var comparator;
+
+			if (options.comparator)
+			{
+				comparator = options.comparator;
+			}
+			else if ($(this).data('sorting'))
+			{
+				var sorting = $(this).data('sorting');
+				comparator = comparators[sorting];
+			}
 			
 			rows.sort(function(a, b)
 			{
-				$a = $(a).children('td').eq(idx);
-				$b = $(b).children('td').eq(idx);
+				$a = $(a).children('th,td').eq(idx);
+				$b = $(b).children('th,td').eq(idx);
 				
 				if (! comparator)
 				{
