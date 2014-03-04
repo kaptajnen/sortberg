@@ -32,3 +32,36 @@ Enable sortberg
 	$('table').sortberg();
 	
 Clicking the headers changes the sorting and adds the css class sort-desc or sort-asc depending on the current sorting.
+
+
+Grouping example
+----------------
+By giving rows a special (details by default) class they can be marked as "belonging" to previous row. When sorting these special rows will stay below their original row
+
+	<table>
+		<thead>
+			<tr><th>Name</th><th>Phone</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>Alice</td><td>+1 234-567-8901</td></tr>
+			<tr class="details"><td colspan="2">Only available from 9-5</td></tr>
+			<tr><td>Bob</td><td>+1 987-654-3210</td></tr>
+			<tr class="details"><td colspan="2">Leave me a voice mail!</td></tr>
+		</tbody>
+	</table>
+
+Clicking the name header will sort the table and make sure the notes below Alice and Bob will stay where they should.
+The class name can be changed by supplying a groupClass parameter.
+
+	$('table').sortberg({groupClass: "someclass"});
+
+
+Custom sorting
+--------------
+A custom comparator function can be specified to use instead of the built-in numeric and alphabetic sorters.
+
+	var myComparator = function(a, b)
+	{
+		return $(a).data('specialdata') - $(b).data('specialdata');
+	};
+	$('table').sortberg({comparator: myComparator});
