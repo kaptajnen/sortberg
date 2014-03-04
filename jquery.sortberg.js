@@ -4,6 +4,8 @@
 	{
 		var $this = $(this);
 		var options = params || {};
+		var defaults = {groupClass: 'details'};
+		options = $.extend(defaults, options);
 		
 		var comparators = {};
 		comparators.text = function($a, $b)
@@ -27,8 +29,21 @@
 		{
 			var $self = $(this);
 			var idx = $(this).index();
-			var rows = $this.find('tbody tr').get();
+			var rows = [];
 			var comparator;
+
+			$this.find('tbody tr').each(function()
+			{
+				if ($(this).hasClass(options.groupClass))
+				{
+					return true;
+				}
+				
+				var details = $(this).nextUntil(':not(.' + options.groupClass + ')', 'tr').get();
+				var row = {row: $(this).get(), details: details};
+
+				rows.push(row);
+			});
 
 			if (options.comparator)
 			{
@@ -42,8 +57,8 @@
 			
 			rows.sort(function(a, b)
 			{
-				$a = $(a).children('th,td').eq(idx);
-				$b = $(b).children('th,td').eq(idx);
+				$a = $(a.row).children('th,td').eq(idx);
+				$b = $(b.row).children('th,td').eq(idx);
 				
 				if (! comparator)
 				{
@@ -80,7 +95,16 @@
 			$this.find('th').not($self).removeClass('sort-desc').removeClass('sort-asc');
 			
 			//update the actual table
-			$this.find('tbody').append(rows);
+			for (var i = 0; i < rows.length; i++)
+			{
+				$this.find('tbody').append(rows[i].row);
+				if (rows[i].details.length > 0)
+				{
+					$this.find('tbody').append(rows[i].details);
+				}
+			}
 		});
+
+		return this;
 	}
 })(jQuery);
