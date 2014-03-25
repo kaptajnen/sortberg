@@ -36,7 +36,7 @@ Clicking the headers changes the sorting and adds the css class sort-desc or sor
 
 Grouping example
 ----------------
-By giving rows a special (details by default) class they can be marked as "belonging" to previous row. When sorting these special rows will stay below their original row
+By giving rows a special ("details" by default) class they can be marked as "belonging" to the previous row. When sorting, these special rows will stay below their original row
 
 	<table>
 		<thead>
@@ -53,7 +53,7 @@ By giving rows a special (details by default) class they can be marked as "belon
 Clicking the name header will sort the table and make sure the notes below Alice and Bob will stay where they should.
 The class name can be changed by supplying a groupClass parameter.
 
-	$('table').sortberg({groupClass: "someclass"});
+	$('table').sortberg({groupClass: 'someclass'});
 
 
 Custom sorting
