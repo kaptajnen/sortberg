@@ -65,3 +65,10 @@ A custom comparator function can be specified to use instead of the built-in num
 		return $(a).data('specialdata') - $(b).data('specialdata');
 	};
 	$('table').sortberg({comparator: myComparator});
+
+
+Case-insensitive sorting
+------------------------
+When sorting text, the comparison is case-sensitive by default. This can be disabled using the `ignoreCase` option.
+
+    $('table').sortberg({ignoreCase: true});
