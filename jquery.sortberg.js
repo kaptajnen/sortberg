@@ -70,6 +70,11 @@
 				var rows = [];
 				var comparator;
 
+				// only sort if the th is clicked, not child elements inside the th
+				if (e.target != this) {
+					return;
+				}
+
 				// disable sorting on headers that span multiple columns since it wouldn't be clear what is being sorted
 				if ($self.prop('colSpan') > 1) {
 					return this;
