@@ -72,3 +72,19 @@ Case-insensitive sorting
 When sorting text, the comparison is case-sensitive by default. This can be disabled using the `ignoreCase` option.
 
     $('table').sortberg({ignoreCase: true});
+
+
+Alternative sorting value
+-------------------------
+Instead of using the value of the table cell to sort on, an alternative value can be specified using the `data-sort-value` attribute. This makes it easier to work with table that contain data that contains non-numeric characters.
+
+	<table>
+		<thead>
+			<tr><th>Product</th><th>Price</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>Chocolate</td><td data-sort-value="4">$4</td></tr>
+			<tr><td>Wine</td><td data-sort-value="12">$12</td></tr>
+			<tr><td>Candle</td><td data-sort-value="2">$2</td></tr>
+		</tbody>
+	</table>

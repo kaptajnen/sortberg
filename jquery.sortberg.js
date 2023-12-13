@@ -29,6 +29,15 @@
 		return $(elem).index() + extraColspan + extraRowspan;
 	};
 
+	var getSortValue = function($elem) {
+		// returns the value of the data-sort-value attribute if set, otherwise the text of the element
+		var value = $elem.data("sort-value");
+		if (value !== undefined) {
+			return value;
+		}
+		return $elem.text();
+	};
+
 	$.fn.sortberg = function(params)
 	{
 		return this.each(function() {
@@ -40,8 +49,8 @@
 			var comparators = {};
 			comparators.text = function($a, $b)
 			{
-				var a = $a.text();
-				var b = $b.text();
+				var a = getSortValue($a);
+				var b = getSortValue($b);
 
 				if (options.ignoreCase) {
 					a = a.toLowerCase();
@@ -55,8 +64,8 @@
 			
 			comparators.number = function($a, $b)
 			{
-				var a = parseFloat($a.text());
-				var b = parseFloat($b.text());
+				var a = parseFloat(getSortValue($a));
+				var b = parseFloat(getSortValue($b));
 				if (isNaN(a)) { a = 0 }
 				if (isNaN(b)) { b = 0 }
 				

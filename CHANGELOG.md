@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.5.0] 2023-12-13
+- Add ability to specify a value to sort on using the data-sort-value attribute as an alternative to using the table cell text
+
 ## [1.4.0] 2022-08-02
 - Only sort columns when clicking the th element, not when clicking child elements inside the th element (this was previously listed as a 1.3.0 feature but it wasn't actually implemented yet)
 
