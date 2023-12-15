@@ -119,7 +119,7 @@
 					
 					if (! comparator)
 					{
-						if (isNaN(parseFloat($a.text())))
+						if (isNaN(parseFloat(getSortValue($a))))
 							comparator = comparators['text'];
 						else
 							comparator = comparators['number'];

@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.5.1] 2023-12-15
+- Fix automatic sort detection not using the `data-sort-value`
+
 ## [1.5.0] 2023-12-13
 - Add ability to specify a value to sort on using the data-sort-value attribute as an alternative to using the table cell text
 
